@@ -1,0 +1,394 @@
+%%%%%%%% ICML 2019 EXAMPLE LATEX SUBMISSION FILE %%%%%%%%%%%%%%%%%
+
+\documentclass{article}
+
+% Recommended, but optional, packages for figures and better typesetting:
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{booktabs} % for professional tables
+\usepackage{soul}
+
+% hyperref makes hyperlinks in the resulting PDF.
+% If your build breaks (sometimes temporarily if a hyperlink spans a page)
+% please comment out the following usepackage line and replace
+% \usepackage{icml2019} with \usepackage[nohyperref]{icml2019} above.
+\usepackage{hyperref}
+
+\renewcommand{\vec}[1]{\mathbf{#1}} % re-style the vector
+\usepackage{tikz}
+\usetikzlibrary{
+  arrows.meta, % for Straight Barb arrow tip
+  fit, % to fit the group box around the central neurons
+  positioning, % for relative positioning of the neurons
+}
+
+% Attempt to make hyperref and algorithmic work together better:
+\newcommand{\theHalgorithm}{\arabic{algorithm}}
+
+% Use the following line for the initial blind version submitted for review:
+\usepackage[accepted]{icml2019}
+
+% If accepted, instead use the following line for the camera-ready submission:
+%\usepackage[accepted]{icml2019}
+
+\tikzset{
+  neuron/.style={ % style for each neuron
+    circle,draw,thick, % drawn as a thick circle
+    inner sep=0pt, % no built-in padding between the text and the circle shape
+    minimum size=3.5em, % make each neuron the same size regardless of the text inside
+    node distance=2em and 4em, % spacing between neurons (y and x)
+  },
+  group/.style={ % style for the groups of neurons
+    rectangle,draw,thick, % drawn as a thick rectangle
+    inner sep=0pt, % no padding between the node contents and the rectangle shape
+  },
+  output/.style={ % style for the inputs/outputs
+    neuron, % inherit the neuron style
+    fill=gray!15, % add a fill color
+  },
+  input/.style={ % style for each neuron
+    circle%,draw,thick, % drawn as a thick circle
+    inner sep=0pt, % no built-in padding between the text and the circle shape
+    minimum size=2.5em, % make each neuron the same size regardless of the text inside
+    node distance=2em and 4em, % spacing between neurons (y and x)
+  },
+  conn/.style={ % style for the connections
+    -{Straight Barb[angle=60:2pt 3]}, % simple barbed arrow tip
+    thick, % draw in a thick weight to match other drawing elements
+  },
+}
+
+% The \icmltitle you define below is probably too long as a header.
+% Therefore, a short form for the running title is supplied here:
+
+% XXX Potentially get rid of "Deep"
+\icmltitlerunning{Can Inter-layer Recurrent Neural Networks Learn Algorithms?}
+
+\begin{document}
+
+\twocolumn[
+% XXX Potentially get rid of "Deep"
+% XXX Potentially talk about algorithm learning, program synthesis
+\icmltitle{Can Inter-layer Recurrent Neural Networks Learn Algorithms?}
+
+% It is OKAY to include author information, even for blind
+% submissions: the style file will automatically remove it for you
+% unless you've provided the [accepted] option to the icml2019
+% package.
+
+% List of affiliations: The first argument should be a (short)
+% identifier you will use later to specify author affiliations
+% Academic affiliations should list Department, University, City, Region, Country
+% Industry affiliations should list Company, City, Region, Country
+
+% You can specify symbols, otherwise they are numbered in order.
+% Ideally, you should not use this facility. Affiliations will be numbered
+% in order of appearance and this is the preferred way.
+\icmlsetsymbol{equal}{*}
+
+\begin{icmlauthorlist}
+\icmlauthor{Anthony Proschka}{can}
+\end{icmlauthorlist}
+
+\icmlaffiliation{can}{Machine Learning Group, Candis GmbH, Berlin, Germany}
+
+\icmlcorrespondingauthor{Anthony Proschka}{anthony@candis.io}
+
+% You may provide any keywords that you
+% find helpful for describing your paper; these are used to populate
+% the "keywords" metadata in the PDF but will not be shown in the document
+\icmlkeywords{Machine Learning, ICML}
+
+\vskip 0.3in
+]
+
+% this must go after the closing bracket ] following \twocolumn[ ...
+
+% This command actually creates the footnote in the first column
+% listing the affiliations and the copyright notice.
+% The command takes one argument, which is text to display at the start of the footnote.
+% The \icmlEqualContribution command is standard text for equal contribution.
+% Remove it (just {}) if you do not need this facility.
+
+%\printAffiliationsAndNotice{}  % leave blank if no need to mention equal contribution
+\printAffiliationsAndNotice{} % otherwise use the standard text.
+
+\begin{abstract}
+While recurrent neural networks have been proven to express universal Turing machines, training them to perform arbitrary computable functions exactly is difficult. In this paper, we introduce a novel architecture called Inter-layer Recurrent Neural Network (ILRNN), a form of deep recurrent neural network that exhibits extended and top-down connectivity across layers. Inspired by digital circuit design, we show that an ILRNN with informed initial hyperparameter configuration \hl{can learn} to add arbitrarily large binary numbers. It remains to be evaluated whether a learning algorithm exists that can reliably find global minima in such a network from all possible initializations.
+
+% \begin{itemize}
+%     \item and show that there exists a configuration of parameters and hyperparameters that solves the given task exactly. However, we only succeed in training the architecture to solve the task exactly in a small share of trials, despite testing various settings for the activation function and its gradient, the training objective (and regularization), the optimization algorithm and its hyperparameters (such as the learning rate)
+%     % pronounced /aɪlɜːn/)
+% \end{itemize}
+\end{abstract}
+
+\section{Motivation}
+\label{motivation}
+
+XXX.
+
+\begin{itemize}
+    \item Interest in understanding the type and mechanisms of computation that is happening in artificial neural networks
+    \item Both biological brains and electronic microcircuits make use of recurrent connections \textit{between} layers of neurons
+    \item Artificial neural networks are historically bad at: 1) finding \textit{exact} solutions as opposed to approximate ones and 2) generalize to unseen examples (of different quality? This is obviously no formal statement) (examples for the latter include recent successes in RL)
+    \item Another motivation: biological implausibility of current deep learning methods
+\end{itemize}
+
+\subsection{XXX}
+
+XXX.
+
+\section{Related Work}
+
+XXX.
+
+\subsection{Recurrent neural networks}
+
+\begin{itemize}
+    \item Rumelhart et al. were the first ones to mention RNNs (\citeyear{rumelhart1986learning})?
+    \item Recurrent neural networks were subject to several (extensive) studies, both historically (+ Jordan) (is this provocative) and in more recent work \cite{graves2012supervised} + Sutskever
+    \item Deep learning textbook \cite{goodfellow2016deep}
+    \item In his doctoral thesis(?), Sutskever is mostly focused on \textit{training} RNNs (\citeyear{sutskever2013training})
+    \item Pascanu et al. discuss further ways to design the connectivity of RNNs (\citeyear{pascanu2013construct})
+    \item \textit{Separate subsection for theoretical foundations (incl. Turing completeness) of RNNs?}
+    \item From a theoretical perspective (which is of particular interest for this paper), Siegelman und Sontag proved that specific instantiations of recurrent neural networks are Turing complete(?) (\citeyear{siegelmann1995computational})
+    \item Do universal approximator theorems of FNNs also hold for RNNs? Are RNNs a special case of FNNs?
+    \item Here we argue/propose/suggest that the community (should) renew its interest in the computational foundations of artificial neural networks as there exist fundamental issues/shortcomings/constraints that block the advancement of general artificial intelligence
+    \item \textit{Cite Grefenstette's summer school talk on RNNs and automata theory}
+    \item Grefenstette argues that RNNs when trained approximate rather FSMs(?) than Turing machines and proposes that RNNs be split into controller and memory modules (as many modern approaches implement, cf. NTM etc.). But this leads to the question: how does the biological brain do this split, and does it to it at all? How does the biological brain store memories if not in its connection weights?
+    \item
+\end{itemize}
+
+\subsection{Neural networks learning Boolean functions}
+
+XXX.
+
+\begin{itemize}
+    \item \textit{Do I even have enough content to make this a subsection?}
+\end{itemize}
+
+\subsubsection{XXX}
+
+XXX.
+
+\section{Model Definition}
+
+XXX.
+
+\begin{figure}[!h]
+\centering
+\begin{tikzpicture}
+  % current time step
+  \node[output] (yt) {$\vec{y}_t$};
+  \node[neuron,below=2em of yt] (htn) {$h_t^n$};
+%   \node[neuron,below=of htn] (htm) {$...$};
+  \node[neuron,below=3em of htn] (ht1) {$h_t^1$};
+  % \node[group,fit={(htn) (htm) (ht1)}] (gr1) {};
+  \node[input,below=2em of ht1] (xt) {$\vec{x}_t$};
+
+  \draw[conn] (htn) -- (yt);
+%   \draw[conn] (htm) -- (htn);
+  \draw[conn] (ht1) -- (htn) node[ fill=white, anchor=center, pos=0.5] {...};
+  \draw[conn] (xt) -- (ht1);
+%   \foreach \destination in {htn,htm,ht1} { % the for loop idea can be expanded to draw the entire diagram quickly
+%     \draw[conn] (ht-1n.east) -- (\destination.west);
+%   }
+  
+  % next time step
+  \node[neuron,right=of htn] (ht+1n) {$h_{t+1}^n$};
+%   \node[neuron,right=of htm] (ht+1m) {$...$};
+  \node[neuron,right=of ht1] (ht+11) {$h_{t+1}^1$};
+  \node[output,above=2em of ht+1n] (yt+1) {$\vec{y}_{t+1}$};
+  \node[input,below=2em of ht+11] (xt+1) {$\vec{x}_{t+1}$};
+  
+  \draw[conn] (ht+1n) -- (yt+1);
+%   \draw[conn] (ht+1m) -- (ht+1n);
+  \draw[conn] (ht+11) -- (ht+1n) node[ fill=white, anchor=center, pos=0.5] {...};
+  \draw[conn] (xt+1) -- (ht+11);
+
+  \foreach \source in {yt, htn, ht1} {
+    \foreach \destination in {yt+1, ht+1n, ht+11} {
+      \draw[conn] (\source.east) -- (\destination.west);
+    }
+  }
+
+  % previous time step
+  \node[neuron,left=of htn] (ht-1n) {$h_{t-1}^n$};
+%   \node[neuron,left=of htm] (ht-1m) {$...$};
+  \node[neuron,left=of ht1] (ht-11) {$h_{t-1}^1$};
+  \node[output,above=2em of ht-1n] (yt-1) {$\vec{y}_{t-1}$};
+  \node[input,below=2em of ht-11] (xt-1) {$\vec{x}_{t-1}$};
+  
+  \draw[conn] (ht-1n) -- (yt-1);
+%   \draw[conn] (ht-1m) -- (ht-1n);
+  \draw[conn] (ht-11) -- (ht-1n) node[ fill=white, anchor=center, pos=0.5] {...};
+  \draw[conn] (xt-1) -- (ht-11);
+
+  \foreach \source in {yt-1, ht-1n, ht-11} {
+    \foreach \destination in {yt, htn, ht1} {
+      \draw[conn] (\source.east) -- (\destination.west);
+    }
+  }
+\end{tikzpicture}
+\end{figure}
+
+\begin{itemize}
+    \item We consider deep RNNs \cite{graves2013speech}.
+    \item Should I even outline the standard RNN equations here?
+\end{itemize}
+
+\[
+h_t^n = \sigma(W_{h^{n-1} h^n} h_t^{n-1} + \sum_i W_{h^i,h^n}^r h_{t-1}^i + b_h^n)
+\]
+
+\begin{itemize}
+    \item Do I need to switch the weights matrices and activation vectors for mathematical correctness?
+    \item Should I print parts of bold? The matrices? Cf. Graves 2013
+    \item for all $n$, $i$ XXX.
+    % XXX Change sigma to capitalized H as Graves (2013)?
+    \item Where $\sigma$ is an arbitrary activation function
+    \item $W$ is the set of feed-forward matrices, $W^r$ is the set of recurrent matrices
+    \item $b$ is a set of vectors of biases
+    \item Output layer is considered the final hidden layer in this notation
+    \item Note there are no cyclical paths in the resulting computational graph
+    \item Note this increases the number of free parameters of the model significantly, but not as much as enhancements like LSTM XXX
+    \item Add ILRNN here
+    \item Surprisingly, to our knowledge this is the first paper to introduce this specific connectivity in recurrent neural networks.
+\end{itemize}
+
+\section{Task Description}
+
+XXX.
+
+
+
+\begin{itemize}
+    \item \textit{Need my task visualization here :)}
+    \item We are evaluating ILRNN on the task to add two binary numbers.
+    \item We formulate this task in the following way:
+    \item \textit{Finish algorithm or at least logical statements of what is supposed to be computed}
+    \item Distinguish our task formulation from the one used for neural program-interpreter \cite{npi}: In their formulation, network also has to learn to memorize the two numbers to be added if I am not mistaken (ah not entirely true, they have an external scratchpad right?). But there are other papers (Graves, NeuralGPU(?))
+    \item Also mention parity function/problem (of which XOR is a special case)
+\end{itemize}
+
+% [tb] parameter apparently causes algorithm to be top of column
+\begin{algorithm}[tb]
+   \caption{Generate binary addition sample}
+   \label{alg:binary-addition}
+\begin{algorithmic}
+   \STATE {\bfseries Input:} maximum digits per addend $n$, 
+   % \REPEAT
+   \STATE Initialize $carry = false$, $sample = []$
+   % $x_1 = $, $x_2 = $.
+   \FOR{$i=1$ {\bfseries to} $n$}
+   \STATE Draw $x_1$, $x_2$ uniformly from $\{0, 1\}$
+   \IF{$carry == false$}
+   \STATE \hl{$y_1 = XXX$, $carry = XXX$}
+   \ELSE
+   \STATE \hl{$y_1 = XXX$, $carry = XXX$}
+   \ENDIF
+   \STATE Append $(x_1, x_2, y_1)$ to $sample$
+   \ENDFOR
+   \IF{$carry == true$}
+   \STATE Append $(0,0,1)$ to $sample $
+   \ENDIF
+   \STATE Return $sample$
+   % Should this algorithm be a generator? But isn't generator something
+   % Python specific? So many we don't even use the REPEAT here?
+   % \UNTIL{$noChange$ is $true$}
+   
+   % \RETURN $sample$
+\end{algorithmic}
+\end{algorithm}
+
+\section{Experiments}
+
+XXX.
+
+\subsection{Analytical solution}
+\begin{itemize}
+    \item Firstly, we address the question: Does there exist a recurrent neural network that is able to perfectly solve / represent a perfect solution to the binary addition task? This we tried using analytical solutions first. +linear activation 
+    \item \textit{Do I mention my approach using Gr\"{o}bner bases here? Yes, also add some maths for it}
+    \item Since conventional learning algorithms are iterative / convex optimization, it is reasonable to ask whether the toy problem posed here can be solved analytically (\textit{This sentence doesn't make sense in itself yet because how do I jump from optimization to solving?}
+\end{itemize}
+
+\subsection{Manual construction}
+\begin{itemize}
+    \item \textit{Do I mention full adder microcircuit here? Could serve as the reasoning behind my choice of hyperparameters / architecture}
+    \item \textit{Jup, both preceding points are valid. Pretty much resembles my "solution" topic from earlier structure draft}
+    \item \textit{My microcircuit + neural equivalent visualization is coming here. Note that I do have to explain how I made this analogy (using basic logic gates).} 
+    \item \textit{Cite Jordan(?) for XOR network instantiation}
+    \item \textit{Cite "Learning XOR - exploring the space of a classic problem"}
+    \item Note that this is more elegant than the full adder circuit because it needs one full adder circuit for every digit in the addends (no recurrence afaik?)
+    \item Note that the full adder (and more broadly, arithmetic logic units) are instantiations of \textit{combination logic} which according to Chomsky (XXX cite Chlomsky) are a class of automata less expressive than even finite state machines
+\end{itemize}    
+
+\subsection{Learning / iterative optimization}
+\begin{itemize}
+    \item Finally, we regard the task as a supervised sequence learning problem and train the network using backpropagation through time (BPTT) \cite{rumelhart1986learning}.
+    \item Custom activation function used to resemble microcircuit (this I can define using math as well). Cite XOR-Net \cite{RastegariORF16} and binarized neural networks \cite{DBLP:journals/corr/CourbariauxB16}.
+    \item Show graph of accuracy over sequence length (how it slowly degrades for normal RNN) vs. how it stays at 100\% for manual solution / ILRNN (depending on what I can achieve here...)
+\end{itemize}
+
+\subsection{XXX}
+
+XXX.
+
+% Note use of \abovespace and \belowspace to get reasonable spacing
+% above and below tabular lines.
+
+\section{Conclusion \& Future Work}
+
+XXX.
+
+\begin{itemize}
+    \item So far, architecture was hand-crafted (and weights needed to be initialized close to hand-crafted solution?), which is far from practical
+    \item We have illustrated the potential of inter-layer recurrent connections to facilitate algorithm learning in neural networks.
+    \item Have the proposed network as a subnetwork of a larger network
+    \item Try other (biologically inspired) learning algorithms, such as 
+    \item So far we have ausgelagert the problem of memory by feeding digits two at a time. Incorporate notions of memory (both internal and external to the neural core)
+    \item Still needs to be evaluated how well the new architecture fares with larger problems and in combination with other recent deep learning-related refinements such as LSTM cells, regularization, bi-directionality etc.
+    \item Regarding larger problems, consider also those not requiring exact learning (potentially cite \textit{exact learning} somewhere?)
+    \item Now that per-layer constraints in connectivity have been loosened, it would also be interesting to ask whether the law of synchrony of computation of neurons in artificial neural networks can be loosened
+    \item The learning algorithm has no "intention"/"inclination" yet to learn the general solution
+\end{itemize}
+
+% We strongly encourage the publication of software and data with the
+% camera-ready version of the paper whenever appropriate. This can be
+% done by including a URL in the camera-ready copy. However, do not
+% include URLs that reveal your institution or identity in your
+% submission for review. Instead, provide an anonymous URL or upload
+% the material as ``Supplementary Material'' into the CMT reviewing
+% system. Note that reviewers are not required to look at this material
+% when writing their review.
+
+% Acknowledgements should only appear in the accepted version.
+% \section*{Acknowledgements}
+
+% \textbf{Do not} include acknowledgements in the initial version of
+% the paper submitted for blind review.
+
+
+% In the unusual situation where you want a paper to appear in the
+% references without citing it in the main text, use \nocite
+% \nocite{langley00}
+
+\bibliography{ilrnn_icml19}
+\bibliographystyle{icml2019}
+
+
+\end{document}
+
+
+% This document was modified from the file originally made available by
+% Pat Langley and Andrea Danyluk for ICML-2K. This version was created
+% by Iain Murray in 2018, and modified by Alexandre Bouchard in
+% 2019. Previous contributors include Dan Roy, Lise Getoor and Tobias
+% Scheffer, which was slightly modified from the 2010 version by
+% Thorsten Joachims & Johannes Fuernkranz, slightly modified from the
+% 2009 version by Kiri Wagstaff and Sam Roweis's 2008 version, which is
+% slightly modified from Prasad Tadepalli's 2007 version which is a
+% lightly changed version of the previous year's version by Andrew
+% Moore, which was in turn edited from those of Kristian Kersting and
+% Codrina Lauth. Alex Smola contributed to the algorithmic style files.

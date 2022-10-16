@@ -1,0 +1,183 @@
+@inproceedings{langley00,
+ author    = {P. Langley},
+ title     = {Crafting Papers on Machine Learning},
+ year      = {2000},
+ pages     = {1207--1216},
+ editor    = {Pat Langley},
+ booktitle     = {Proceedings of the 17th International Conference
+              on Machine Learning (ICML 2000)},
+ address   = {Stanford, CA},
+ publisher = {Morgan Kaufmann}
+}
+
+@TechReport{mitchell80,
+  author = 	 "T. M. Mitchell",
+  title = 	 "The Need for Biases in Learning Generalizations",
+  institution =  "Computer Science Department, Rutgers University",
+  year = 	 "1980",
+  address =	 "New Brunswick, MA",
+}
+
+@phdthesis{kearns89,
+  author = {M. J. Kearns},
+  title =  {Computational Complexity of Machine Learning},
+  school = {Department of Computer Science, Harvard University},
+  year =   {1989}
+}
+
+@Book{MachineLearningI,
+  editor = 	 "R. S. Michalski and J. G. Carbonell and T.
+		  M. Mitchell",
+  title = 	 "Machine Learning: An Artificial Intelligence
+		  Approach, Vol. I",
+  publisher = 	 "Tioga",
+  year = 	 "1983",
+  address =	 "Palo Alto, CA"
+}
+
+@Book{DudaHart2nd,
+  author =       "R. O. Duda and P. E. Hart and D. G. Stork",
+  title =        "Pattern Classification",
+  publisher =    "John Wiley and Sons",
+  edition =      "2nd",
+  year =         "2000"
+}
+
+@misc{anonymous,
+  title= {Suppressed for Anonymity},
+  author= {Author, N. N.},
+  year= {2018}
+}
+
+@InCollection{Newell81,
+  author =       "A. Newell and P. S. Rosenbloom",
+  title =        "Mechanisms of Skill Acquisition and the Law of
+                  Practice", 
+  booktitle =    "Cognitive Skills and Their Acquisition",
+  pages =        "1--51",
+  publisher =    "Lawrence Erlbaum Associates, Inc.",
+  year =         "1981",
+  editor =       "J. R. Anderson",
+  chapter =      "1",
+  address =      "Hillsdale, NJ"
+}
+
+
+@Article{Samuel59,
+  author = 	 "A. L. Samuel",
+  title = 	 "Some Studies in Machine Learning Using the Game of
+		  Checkers",
+  journal =	 "IBM Journal of Research and Development",
+  year =	 "1959",
+  volume =	 "3",
+  number =	 "3",
+  pages =	 "211--229"
+}
+
+% My own citations
+
+@article{rumelhart1986learning,
+  title={Learning representations by back-propagating errors},
+  author={Rumelhart, David E and Hinton, Geoffrey E and Williams, Ronald J},
+  journal={nature},
+  volume={323},
+  number={6088},
+  pages={533},
+  year={1986},
+  publisher={Nature Publishing Group}
+}
+
+@book{goodfellow2016deep,
+  title={Deep learning},
+  author={Goodfellow, Ian and Bengio, Yoshua and Courville, Aaron and Bengio, Yoshua},
+  volume={1},
+  year={2016},
+  publisher={MIT press Cambridge}
+}
+
+@incollection{graves2012supervised,
+  title={Supervised sequence labelling},
+  author={Graves, Alex},
+  booktitle={Supervised sequence labelling with recurrent neural networks},
+  pages={5--13},
+  year={2012},
+  publisher={Springer}
+}
+
+@book{sutskever2013training,
+  title={Training recurrent neural networks},
+  author={Sutskever, Ilya},
+  year={2013},
+  publisher={University of Toronto Toronto, Ontario, Canada}
+}
+
+@article{pascanu2013construct,
+  title={How to construct deep recurrent neural networks},
+  author={Pascanu, Razvan and Gulcehre, Caglar and Cho, Kyunghyun and Bengio, Yoshua},
+  journal={arXiv preprint arXiv:1312.6026},
+  year={2013}
+}
+
+@article{siegelmann1995computational,
+  title={On the computational power of neural nets},
+  author={Siegelmann, Hava T and Sontag, Eduardo D},
+  journal={Journal of computer and system sciences},
+  volume={50},
+  number={1},
+  pages={132--150},
+  year={1995},
+  publisher={Elsevier}
+}
+
+@inproceedings{graves2013speech,
+  title={Speech recognition with deep recurrent neural networks},
+  author={Graves, Alex and Mohamed, Abdel-rahman and Hinton, Geoffrey},
+  booktitle={Acoustics, speech and signal processing (icassp), 2013 ieee international conference on},
+  pages={6645--6649},
+  year={2013},
+  organization={IEEE}
+}
+
+@techreport{npi,
+  title = "Neural Programmer-Interpreters",
+  author = "Scott Reed and Nando de Freitas",
+  year = "2015",
+  number = "arXiv:1511.06279",
+  url = "http://arxiv.org/abs/1511.06279",
+}
+
+@article{RastegariORF16,
+  author    = {Mohammad Rastegari and
+               Vicente Ordonez and
+               Joseph Redmon and
+               Ali Farhadi},
+  title     = {XNOR-Net: ImageNet Classification Using Binary Convolutional Neural
+Networks},
+  journal   = {CoRR},
+  volume    = {abs/1603.05279},
+  year      = {2016},
+  url       = {http://arxiv.org/abs/1603.05279},
+  archivePrefix = {arXiv},
+  eprint    = {1603.05279},
+  timestamp = {Mon, 13 Aug 2018 16:47:22 +0200},
+  biburl    = {https://dblp.org/rec/bib/journals/corr/RastegariORF16},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{DBLP:journals/corr/CourbariauxB16,
+  author    = {Matthieu Courbariaux and
+               Yoshua Bengio},
+  title     = {BinaryNet: Training Deep Neural Networks with Weights and Activations
+               Constrained to +1 or -1},
+  journal   = {CoRR},
+  volume    = {abs/1602.02830},
+  year      = {2016},
+  url       = {http://arxiv.org/abs/1602.02830},
+  archivePrefix = {arXiv},
+  eprint    = {1602.02830},
+  timestamp = {Mon, 13 Aug 2018 16:46:57 +0200},
+  biburl    = {https://dblp.org/rec/bib/journals/corr/CourbariauxB16},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+
